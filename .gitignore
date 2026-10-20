@@ -14,6 +14,9 @@ dist/
 *.before-*
 *.pristine
 
+# Automation state: the report names this machine's paths and is regenerated daily
+automation/last-check.json
+
 # Editor and OS noise
 .DS_Store
 Thumbs.db

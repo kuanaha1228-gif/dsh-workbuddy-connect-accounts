@@ -17,9 +17,14 @@ import { copyFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
-const PKG = process.env.WORKBUDDY_SWITCHACCOUNT_DIR
-  ?? path.join(process.env.USERPROFILE ?? process.env.HOME ?? '', '.dsh', 'profiles', 'desktop', 'node_modules', 'dsh-workbuddy-switchaccount');
-const CLIENT = path.join(PKG, 'lib', 'client.js');
+/** Where to patch; `WORKBUDDY_LIB_DIR` addresses a lib/ directory directly. */
+const LIB = process.env.WORKBUDDY_LIB_DIR
+  ?? path.join(
+    process.env.WORKBUDDY_SWITCHACCOUNT_DIR
+      ?? path.join(process.env.USERPROFILE ?? process.env.HOME ?? '', '.dsh', 'profiles', 'desktop', 'node_modules', 'dsh-workbuddy-switchaccount'),
+    'lib',
+  );
+const CLIENT = path.join(LIB, 'client.js');
 
 let text = (await readFile(CLIENT, 'utf8')).replace(/\r\n/g, '\n');
 const before = text;

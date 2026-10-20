@@ -12,10 +12,14 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
+/** Where to patch; `WORKBUDDY_LIB_DIR` addresses a lib/ directory directly. */
 const CLIENT = path.join(
-  process.env.WORKBUDDY_SWITCHACCOUNT_DIR
-    ?? path.join(process.env.USERPROFILE ?? process.env.HOME ?? '', '.dsh', 'profiles', 'desktop', 'node_modules', 'dsh-workbuddy-switchaccount'),
-  'lib',
+  process.env.WORKBUDDY_LIB_DIR
+    ?? path.join(
+      process.env.WORKBUDDY_SWITCHACCOUNT_DIR
+        ?? path.join(process.env.USERPROFILE ?? process.env.HOME ?? '', '.dsh', 'profiles', 'desktop', 'node_modules', 'dsh-workbuddy-switchaccount'),
+      'lib',
+    ),
   'client.js',
 );
 
