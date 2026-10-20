@@ -1,0 +1,16 @@
+# Register the WorkBuddy provider without changing the profile's current
+# default model. The plugin reuses the WorkBuddy desktop app's sign-in; no
+# separate OAuth flow is started.
+#
+# The entry id equals the package name on purpose: `resolveModernSettingsEntryId`
+# falls back to the package-name literal when the plugin fiber carries no entry
+# (programmatic loading, and the settings card's own lookup), so an entry id that
+# differs from the package name would make the settings card unbindable — the
+# exact failure that made the plugin's card invisible in an earlier attempt.
+#
+# Multi-account fork: this registers the SAME provider ids (`workbuddy`,
+# `workbuddy-ai`) as upstream `dsh-workbuddy-connect`, so the two must never be
+# enabled together — disable upstream in the profile's cordis.patch.yml.
+- insert:
+    - id: dsh-workbuddy-switchaccount
+      name: dsh-workbuddy-switchaccount

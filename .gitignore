@@ -1,0 +1,20 @@
+# --- Account data must never enter this repository -------------------------
+# The account archive lives in $DSH_HOME, not here, but a stray copy must not
+# become a commit. These patterns are the shapes a leak would take.
+.workbuddy-accounts*
+*.workbuddy-auth
+*credentials*
+workbuddy-desktop.info
+
+# Local build and test output
+node_modules/
+*.tgz
+dist/
+.install-backup*/
+*.before-*
+*.pristine
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.log
